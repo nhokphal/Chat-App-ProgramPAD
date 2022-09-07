@@ -1,23 +1,35 @@
 const express = require("express")
 const app = express()
 const http = require("http")
+// add routing 
 
 
+// adding route 
 
-// meddleware
-app.use(function(request, response, next) 
+// route handle homePage
+app.get("/", function(request, response)
 {
-    console.log("request type", request.method, request.url)
- 
-    // pass to next
-    next();
-}
-)
+    response.end("Welcome to our Pages");
+})
+
+
+// route hand about 
+app.get("/about", function(request, response)
+{
+    response.end("About us");
+})
+
+
+// route handle contact
+app.get("/contact", function(request, response)
+{
+    response.end("Contact us us");
+})
 
 app.use(function(request, response)
 {
-    response.writeHead(200, { "Content-Type": "text/plain"})
-    response.end("hello, welcomes")
+    response.statusCode = 404; // if miss all above
+    response.end("404!");
 })
 
 
